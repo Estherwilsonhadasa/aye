@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="">
+</head>
+<body>
+
+	<!-- <div class="node"></div> -->
+
+	
+{{ welcome }}
+	<form method="post">{% csrf_token %}
+		{{ form }}
+		
+		<button type="submit"> send </button>
+		
+	</form>
+
+{{ result }}
+
+
+</body>
+</html>

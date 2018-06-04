@@ -1,0 +1,151 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>get</title>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<!-- <link rel="stylesheet" href="{%  static 'css/myStyles.css' %}" type="text/css"> -->
+<!-- 	<script type="text/javascript">
+		var container = document.getElementsByClassName("container");
+		window.scrollTo(0, container.innerHeight);
+
+		$(".container").stop().animate({ scrollTop: $(".msg_container_base")[0].scrollHeight}, 1000);
+	</script> -->
+
+	<style type="text/css">
+		body, html {
+			height: 100% !important;
+			background-color: #eee;
+			font-family: "Calibri", "Roboto", sans-serif;
+		}
+
+		}
+		.chat-area {
+			height: 90% !important;
+			padding-left: 50px;
+		}
+		.chat-area .chat-bubble {
+			max-width: 80%;
+		}
+		.chat-area .response {
+			text-align: left;
+			clear: both;
+    		padding: 20px;
+		}
+		.chat-area .response .chat-bubble{
+			background: #ffffee;
+		}
+		.chat-area .question .chat-bubble{
+			background: #84bb00;
+    		float: right;
+    		width: 60%;
+		}
+
+		.chat-bubble{
+			width: 48%;    
+			padding: 20px;
+   			border-radius: 14px;
+
+		}
+		.chat-area .question {
+			text-align: right;
+			clear: both;
+    		padding: 20px;
+			border-radius: .4em;
+			position: relative;
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+
+			
+		}
+
+		.chat-form {
+			height: 9% !important;
+			padding-left: 50px;
+
+			background: white;
+		    height: 12% !important;
+		    padding-left: 50px;
+		    position: fixed;
+		    bottom:0px;
+		    width: 100%;
+
+		}
+		.nav{
+			background-color: #05623a;
+			width: 100%;
+			padding: 20px 0 15px;
+			box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+		}
+		.nav h4{
+			text-align: center;
+			color: #ffffee
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<h4>ASK LALONG<h4>
+	</div>
+<div class="container" id="full">
+	<div class="chat-area">
+	</div>
+	
+
+</div>
+	<div class="chat-form">
+		<form method="post" id="form">{% csrf_token %}
+			{{ form }}
+			
+			<button type="submit"> send </button>
+		</form>
+	</div>
+
+
+
+
+	<script type="text/javascript">
+		$(document).ready(function(e) {
+			$.get( "/dialogue_json", function( data ) {
+				console.log(data.output.text.values[0]);
+
+				$( ".chat-area" ).append( "<div class='chat-line response'><div class='chat-bubble'>" + data.output.text.values[0] + "</div></div>" );
+
+					var div = $("#chat-area");
+    				div.scrollTop(div.prop('scrollHeight'));
+				// alert( "Load was performed." );
+			});
+		});
+
+		$("#form").submit(function(e) {
+
+		    var url = "/get_dialogue"; // the script where you handle the form input.
+
+		    $.ajax({
+		        	type: "POST",
+		           	url: url,
+		           	data: $("#form").serialize(), // serializes the form's elements.
+		           	success: function(data) {
+		           		console.log(data)
+		            	$( ".chat-area" ).append(  "<div class='chat-line question'><div class='chat-bubble'>" + data.input.text + "</div></div>" );
+		            	$( ".chat-area" ).append(  "<div class='chat-line response'><div class='chat-bubble'>" + data.output.text[0] + "</div></div>" );
+		            	// mua
+		            	 // $("#chat-area").animate({ scrollTop: 20000000 }, "slow");
+		           }
+		         });
+
+		    e.preventDefault(); // avoid to execute the actual submit of the form.
+		});
+
+ 	// var l = document.getElementsByClassName("chat-area").length;
+  //   document.getElementsByClassName("chat-area")[l-1].scrollIntoView();
+
+	</script>
+</body>
+</html>

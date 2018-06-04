@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="">
+</head>
+<body>
+
+	<!-- <div class="node"></div> -->
+
+	
+{{ welcome }}
+	<form method="post">{% csrf_token %}
+		{{ form }}
+		
+		<button type="submit"> send </button>
+		
+	</form>
+
+{{ result }}
+
+
+</body>
+<!-- <script type="text/javascript">
+		$(document).ready(function(e) {
+			$.get( "/dialogue_json", function( data ) {
+				console.log(data.output.text.values[0]);
+
+				$( ".node" ).html( data.output.text.values[0] );
+				// alert( "Load was performed." );
+			});
+		});
+	</script> -->
+</html>
