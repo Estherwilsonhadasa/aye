@@ -45,7 +45,7 @@ def dialogue_json(request):
 )
 
 	response = conversation.get_dialog_node(
-	    workspace_id = 'e94add0a-39b9-4fb9-b73f-df1b6abd684d',
+	    workspace_id = 'db92f9fa-5fcc-493c-ba9e-3ded910924da',
 	    dialog_node = 'Welcome'
 	)
 
@@ -79,7 +79,7 @@ def get_dialogue(request):
 
 
 	response = conversation.get_dialog_node(
-	    workspace_id = 'e94add0a-39b9-4fb9-b73f-df1b6abd684d',
+	    workspace_id = 'db92f9fa-5fcc-493c-ba9e-3ded910924da',
 	    dialog_node = 'Welcome'
 	)
 
@@ -169,7 +169,7 @@ def home(request):
 
 
 	response = conversation.get_dialog_node(
-	    workspace_id = 'e94add0a-39b9-4fb9-b73f-df1b6abd684d',
+	    workspace_id = 'db92f9fa-5fcc-493c-ba9e-3ded910924da',
 	    dialog_node = 'Welcome'
 	)
 

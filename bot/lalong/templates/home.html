@@ -1,110 +1,117 @@
-{% load staticfiles %}
-{% load widget_tweaks %}
+{% load staticfiles %} {% load widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
-	<title>Ask - Lalong</title>
+	<title>Talk to BeeCee</title>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-	
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 	<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
 	<style>
-		.input-lg{
+		.input-lg {
 			border-radius: 0
 		}
+
 		.chat-area {
 			/*height: 100% !important;*/
 			/*padding-left: 50px;*/
-			 	/*background: none repeat scroll 0 0 transparent;
+			/*background: none repeat scroll 0 0 transparent;
 			    border: 0 none;
 			    overflow: auto;
 			    position: relative;
 			    padding: 0 !important;*/
 		}
+
 		/*.chat-area .chat-bubble {
 			max-width: 48%;
 		}*/
+
 		.chat-area .response {
 			/*text-align: left;
 			clear: both;*/
-    		/*padding: 20px;*/
+			/*padding: 20px;*/
 		}
-		./*chat-area .response .chat-bubble{
+
+		.
+		/*chat-area .response .chat-bubble{
 			background: #ffffee;
 		}*/
-		.chat-area .question .chat-bubble{
+
+		.chat-area .question .chat-bubble {
 			/*background: #84bb00;
     		float: right;
     		width: 100%;*/
-    				/*left: 0;
+			/*left: 0;
 				    outline: 0 none;
 				    padding: 0 !important;
 				    position: absolute;
 				    top: 0;*/
 		}
-/*
+
+		/*
 		.chat-bubble{
 			width: 48%;    
 			padding: 20px;
    			border-radius: 14px;*/
 
 		}
+
 		.chat-area .question {
 			/*text-align: right;
 			clear: both;*/
-    		/*padding: 20px;
+			/*padding: 20px;
 			border-radius: .4em;
 			position: relative;
 			margin-left: 50px;
 			margin-right: 50px;
 			margin-top: 10px;
 			margin-bottom: 10px;*/
-
-			
 		}
-
-			
 	</style>
 </head>
+
 <body>
-<!-- <div class="container"> -->
+	<!-- <div class="container"> -->
 	<div class="row">
 		<div class="col-sm-4 col-md-4 col-sm-offset-8 col-md-offset-8" style="margin-top: 150px">
-				<div class="card bg-success text-white" style="background-color: #569358 !important">
-					<div class="panel-heading">
-						<h1><span class="glyphicon glyphicon-comment" style="width: 10%"></span> Ask - Lalong</h1>
-					</div>
-					<!-- <div > -->
-					<div class="col-sm-12 col-md-12 frame">
-				        <div class="chat-area row"></div>
-				     </div>
-				        <div class="chat-form message">
-								<form method="post" id="form">{% csrf_token %}
+			<div class="card bg-success text-white" style="background-color: #f7ca17 !important">
+				<div class="panel-heading">
+					<h1 style="color: white">
+						<span class="glyphicon glyphicon-comment" style="width: 10%,"></span>
+						<i>Talk to Beecee</i>
+					</h1>
+				</div>
+				<!-- <div > -->
+				<div class="col-sm-12 col-md-12 frame">
+					<div class="chat-area row"></div>
+				</div>
+				<div class="row chat-form message">
+					<form method="post" id="form">{% csrf_token %}
 
 						<!-- {{ form.message |add_class:'form-control' | attr:"placeholder=enter your message" }} -->
 						{% render_field form.message class="form-control" placeholder="enter your message" %}
 
-									
-									<button class="msg" type="submit">
-				            		<i class="icon-paper-plane icons"></i>
-				            		</button>
-									<!-- <button ty8pe="submit"> send </button> -->
-								</form>
-				      </div>
-					<!-- </div>  -->
-					
-						
+
+						<button class="msg" type="submit">
+							<i class="icon-paper-plane icons"></i>
+						</button>
+						<!-- <button ty8pe="submit"> send </button> -->
+					</form>
 				</div>
+				<!-- </div>  -->
+
+
+			</div>
 		</div>
 	</div>
-</div>
+	</div>
 
 
 
@@ -113,80 +120,81 @@
 
 
 
-<script type="text/javascript">
-		$(document).ready(function(e) {
-			$.get( "/dialogue_json", function( data ) {
+	<script type="text/javascript">
+		$(document).ready(function (e) {
+			$.get("/dialogue_json", function (data) {
 				console.log(data.output.text.values[0]);
 
-				$( ".chat-area" ).append( "<div class='col-md-12 col-sm-12'>" + data.output.text.values[0] + "</div>" + "<br>" );
+				$(".chat-area").append("<div class='col-md-12 col-sm-12'>" + data.output.text.values[0] + "</div>" + "<br>");
 
-					var div = $(".chat-area");
-    				div.scrollTop(div.prop('scrollHeight'));
+				var div = $(".chat-area");
+				div.scrollTop(div.prop('scrollHeight'));
 				// alert( "Load was performed." );
 			});
 		});
 
-		$("#form").submit(function(e) {
+		$("#form").submit(function (e) {
 
-		    var url = "/get_dialogue"; // the script where you handle the form input.
+			var url = "/get_dialogue"; // the script where you handle the form input.
 
-		    $.ajax({
-		        	type: "POST",
-		           	url: url,
-		           	data: $("#form").serialize(), // serializes the form's elements.
-		           	success: function(data) {
-		           		console.log(data)
-		            	$( ".chat-area" ).append(  "<div class='row'>" + data.input.text + "</div>");
-		            	$( ".chat-area" ).append(  "<div class='row'>" + data.output.text[0] + "</div>" );
-		           }
-		         });
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: $("#form").serialize(), // serializes the form's elements.
+				success: function (data) {
+					console.log(data)
+					$(".chat-area").append("<div class='row'>" + data.input.text + "</div>");
+					$(".chat-area").append("<div class='row'>" + data.output.text[0] + "</div>");
+				}
+			});
 
-		    e.preventDefault(); // avoid to execute the actual submit of the form.
+			e.preventDefault(); // avoid to execute the actual submit of the form.
 		});
 
 
 
 
-$(document).ready(function() {
+		$(document).ready(function () {
 
-    if ($('.chat-area').height() > $('.frame').height()) {
-        setInterval(function () {
+			if ($('.chat-area').height() > $('.frame').height()) {
+				setInterval(function () {
 
-            start();
-       }, 3000); 
-   
-    }
-});
+					start();
+				}, 3000);
 
-function animateContent(direction) {  
-    var animationOffset = $('.frame').height() - $('.chat-area').height()-30;
-    if (direction == 'up') {
-        animationOffset = 0;
-    }
+			}
+		});
 
-    console.log("animationOffset:"+animationOffset);
-    $('.content').animate({ "marginTop": (animationOffset)+ "px" }, 5000);
-}
+		function animateContent(direction) {
+			var animationOffset = $('.frame').height() - $('.chat-area').height() - 30;
+			if (direction == 'up') {
+				animationOffset = 0;
+			}
 
-function up(){
-    animateContent("up")
-}
-function down(){
-    animateContent("down")
-}
+			console.log("animationOffset:" + animationOffset);
+			$('.content').animate({ "marginTop": (animationOffset) + "px" }, 5000);
+		}
 
-function start(){
- setTimeout(function () {
-    down();
-}, 2000);
- setTimeout(function () {
-    up();
-}, 2000);
-   setTimeout(function () {
-    console.log("wait...");
-}, 5000);
-}    
+		function up() {
+			animateContent("up")
+		}
+		function down() {
+			animateContent("down")
+		}
+
+		function start() {
+			setTimeout(function () {
+				down();
+			}, 2000);
+			setTimeout(function () {
+				up();
+			}, 2000);
+			setTimeout(function () {
+				console.log("wait...");
+			}, 5000);
+		}
 
 	</script>
 </body>
+
 </html>

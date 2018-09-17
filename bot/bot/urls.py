@@ -27,4 +27,5 @@ urlpatterns = [
     path('get_dialogue' ,get_dialogue),
     path('dialogue_json' ,dialogue_json),
     path('admin/', admin.site.urls),
+
 ]

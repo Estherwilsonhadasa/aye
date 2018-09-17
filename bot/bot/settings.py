@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'bot.wsgi.application'
 #Watson API configuration
 USERNAME = "d3bb864f-799a-4226-8f41-fdae3c969b0d"
 PASSWORD = "WOjRo1s71Wd0"
-WORKSPACE_ID = "e94add0a-39b9-4fb9-b73f-df1b6abd684d"
+WORKSPACE_ID = "db92f9fa-5fcc-493c-ba9e-3ded910924da"
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
