@@ -15,15 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from lalong.views import *
+# from lalong.views import *
+from trustfund.views import *
+
 
 
 urlpatterns = [
-	# path('' ,chat),
-    path('index' ,index),
 	path('home' ,home),
-	path('real' ,real),
-	path('real_json' ,real_json),
     path('get_dialogue' ,get_dialogue),
     path('dialogue_json' ,dialogue_json),
     path('admin/', admin.site.urls),

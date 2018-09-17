@@ -8,35 +8,6 @@ from django.http import JsonResponse
 
 # Create your views here.
 
-# def chat(request):
-# 	conversation = ConversationV1(
-# 		username = settings.USERNAME,
-# 		password = settings.PASSWORD,
-# 		version = '2018-02-16'
-# 		) 
-# 	result = ''
-# 	if request.method == 'POST':
-# 		form = ChatForm(request.POST)
-# 		if form.is_valid():
-# 			response = conversation.message(
-# 				workspace_id = settings.WORKSPACE_ID,
-# 				input = {
-# 					'text':	form.cleaned_data['message']
-# 				}
-# 				)
-			
-# 		result += json.dumps(response['output']['text'], indent=2)
-
-# 	else:
-# 		form = ChatForm()
-# 	return render(request, 'chat.html', {'form': form, 'result': result})
-
-
-
-
-
-
-
 def dialogue_json(request):
 	conversation = ConversationV1(
    	username = settings.USERNAME,
@@ -85,57 +56,6 @@ def get_dialogue(request):
 
 	print(json.dumps(response, indent=2 ,))
 	return render(request,'get_dialogue.html',{'form': form})
-
-def real(request):
-	conversation = ConversationV1(
-		username = settings.USERNAME,
-		password = settings.PASSWORD,
-		version = '2018-02-16'
-		) 
-	result = ''
-	if request.method == 'POST':
-		form = ChatForm(request.POST)
-		if form.is_valid():
-			response = conversation.message(
-				workspace_id = settings.WORKSPACE_ID,
-				input = {
-					'text':	form.cleaned_data['message']
-				}
-				)
-			
-		result += json.dumps(response['output']['text'], indent=2)
-
-	else:
-		form = ChatForm()
-	return render(request, 'real.html', {'form': form, 'result': result})
-
-
-def real_json(request):
-	conversation = ConversationV1(
-		username = settings.USERNAME,
-		password = settings.PASSWORD,
-		version = '2018-02-16'
-		) 
-	result = ''
-	if request.method == 'POST':
-		form = ChatForm(request.POST)
-		if form.is_valid():
-			response = conversation.message(
-				workspace_id = settings.WORKSPACE_ID,
-				input = {
-					'text':	form.cleaned_data['message']
-				}
-				)
-			
-		result += json.dumps(response['output']['text'], indent=2)
-
-
-	else:
-		form = ChatForm()
-	return JsonResponse(result, safe=False)
-
-
-
 
 
 def index(request):
